@@ -286,11 +286,13 @@ DATA:
                 "Content-Type": "application/json"
             },
             json={
-                "model": "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
+                "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
                 "messages": [
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": prompt}
-                ]
+                ],
+                "max_tokens": 300,
+                "temperature": 0.7
             }
         )
         result = response.json()
