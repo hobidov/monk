@@ -286,7 +286,7 @@ DATA:
                 "Content-Type": "application/json"
             },
             json={
-                "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+                "model": "meta-llama/Llama-3-8b-chat-hf",
                 "messages": [
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": prompt}
