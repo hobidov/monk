@@ -293,7 +293,11 @@ DATA:
                 ]
             }
         )
+        result = response.json()
 
+# DEBUG SAFETY (VERY IMPORTANT)
+        if "choices" not in result:
+           return f"API Error: {result}"
         return response.json()["choices"][0]["message"]["content"]
 
     except Exception as e:
