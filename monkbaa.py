@@ -286,7 +286,7 @@ DATA:
                 "Content-Type": "application/json"
             },
             json={
-                "model": "meta-llama/Meta-Llama-3-8B-Instruct-Turbo",
+                "model": "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
                 "messages": [
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": prompt}
