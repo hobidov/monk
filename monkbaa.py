@@ -286,7 +286,7 @@ DATA:
                 "Content-Type": "application/json"
             },
             json={
-                "model": "meta-llama/Llama-3-8b-chat-hf",
+                "model": "meta-llama/Meta-Llama-3-8B-Instruct-Lite",
                 "messages": [
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": prompt}
