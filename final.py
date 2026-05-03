@@ -737,15 +737,16 @@ main_col, side_col = st.columns([3.2, 1.25], gap="large")
 
 with main_col:
     st.markdown("""
-<div class="banner-core">
-    <div style="font-size:13px;font-weight:700;text-transform:uppercase;">
-        Core Impact Charts
+    <div class="banner-core">
+        <div style="font-size:13px;font-weight:700;text-transform:uppercase;">
+            Core Impact Charts
+        </div>
+        <div style="margin-top:4px;font-size:14px;color:#4b5563;">
+            These are framework-critical metrics directly mapped to Monkey Baa’s Theory of Change (Spark → Growth → Horizon). Use these for decision-making and reporting.
+        </div>
     </div>
-    <div style="margin-top:4px;font-size:14px;color:#4b5563;">
-        These are framework-critical metrics directly mapped to Monkey Baa’s Theory of Change (Spark → Growth → Horizon). Use these for decision-making and reporting.
-    </div>
-</div>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
+
     kpi_cols = st.columns(3)
     for idx, kpi in enumerate(analytics["kpis"]):
         with kpi_cols[idx % 3]:
@@ -753,26 +754,28 @@ with main_col:
 
     strongest = analytics["strongest"]
 
+    # ✅ NOW INSIDE MAIN_COL
+    st.markdown('<div class="side-card" style="margin-top:12px;">', unsafe_allow_html=True)
+
     st.markdown(f"""
-    <div style="margin-top:10px;font-size:14px;color:#374151;">
-    <strong>Key Insight:</strong> The strongest outcome area is <b>{strongest['label']}</b> at <b>{strongest['value']}%</b>, indicating this is where the program delivers the most impact.
+    <div style="font-size:14px;color:#374151;">
+    <strong>Key Insight:</strong> The strongest outcome area is <b>{strongest['label']}</b> at <b>{strongest['value']}%</b>.
     </div>
     """, unsafe_allow_html=True)
-    # 🔥 MAIN INSIGHT CHART (FIXED POSITION)
-    st.markdown('<div class="side-card">', unsafe_allow_html=True)
+
+    st.subheader("Outcome Comparison: Spark vs Growth vs Horizon")
+
     spark = find_kpi(analytics["kpis"], "Social Spark")["value"]
     growth = find_kpi(analytics["kpis"], "Social Growth")["value"]
     horizon = find_kpi(analytics["kpis"], "Social Horizon")["value"]
 
-    st.subheader("Outcome Comparison: Spark vs Growth vs Horizon")
-
     gap = horizon - spark
 
     st.markdown(f"""
-<div style="font-size:14px;color:#4b5563;margin-top:6px;">
-There is a <b>{gap}% gap</b> between initial engagement (Spark) and long-term impact (Horizon), indicating strong sustained outcomes beyond first impressions.
-</div>
-""", unsafe_allow_html=True)
+    <div style="font-size:14px;color:#4b5563;margin-top:6px;">
+    There is a <b>{gap}% gap</b> between Spark and Horizon.
+    </div>
+    """, unsafe_allow_html=True)
 
     comparison_data = [
         {"label": "Spark", "value": spark},
@@ -782,7 +785,8 @@ There is a <b>{gap}% gap</b> between initial engagement (Spark) and long-term im
 
     bar_rows(comparison_data, "value", PALETTE["primary"], "%")
 
-    st.caption("This chart highlights the performance gap between Spark, Growth, and Horizon outcomes.")
+    st.caption("This chart highlights the performance gap.")
+
     st.markdown("</div>", unsafe_allow_html=True)
     
     
